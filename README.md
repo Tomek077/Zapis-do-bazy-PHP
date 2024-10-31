@@ -159,4 +159,34 @@ mysqli_stmt_execute($stmt);
 ```
 
 W zapytaniu SQL znak `?` jest zastępowany przez wartości zmiennych `$imie` i `$email`, przekazanych do funkcji `mysqli_stmt_bind_param`.
+
+Instrukcja:
+
+```php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Kod, który wykona się, jeśli metoda żądania to POST
+}
+```
+
+ma na celu sprawdzenie, czy metoda żądania HTTP używana do wywołania danej strony jest metodą `POST`.
+
+### Szczegóły działania:
+
+1. **`$_SERVER['REQUEST_METHOD']`** – jest to superglobalna zmienna w PHP, która zawiera metodę żądania HTTP używaną do wywołania strony. Może przyjmować wartości takie jak `"GET"`, `"POST"`, `"PUT"`, `"DELETE"`, i inne, ale najczęściej stosowane są `GET` i `POST`.
+
+2. **`if ($_SERVER['REQUEST_METHOD'] == 'POST')`** – to sprawdzenie, czy metoda żądania jest równa `POST`. Jeśli tak, instrukcja warunkowa zwróci `true`, a kod wewnątrz bloku zostanie wykonany.
+
+3. **Przykład zastosowania** – Taka struktura jest powszechnie używana w formularzach HTML, gdzie metoda wysyłania danych do serwera jest ustawiona na `POST`. Dzięki temu kod w bloku `if` zostanie wykonany tylko wtedy, gdy formularz został wysłany przez użytkownika.
+
+### Przykład w kontekście obsługi formularza:
+
+```php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $imie = $_POST['imie'];
+    $email = $_POST['email'];
+    // Przetwarzanie danych, np. walidacja i zapis do bazy danych
+}
+```
+
+W tym przykładzie, blok kodu zostanie wykonany tylko wtedy, gdy formularz zostanie przesłany metodą `POST`. Taki warunek jest potrzebny, aby kod przetwarzania formularza nie uruchamiał się, gdy użytkownik po prostu wchodzi na stronę (metoda `GET`), a jedynie po faktycznym wysłaniu danych z formularza.
 **Podsumowując**, choć w tym tutorialu skupiliśmy się na prostocie i zrozumiałości kodu, zawsze warto pamiętać o bezpieczeństwie i dobrej praktyce programowania.
